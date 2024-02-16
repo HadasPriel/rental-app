@@ -6,60 +6,87 @@
     </header>
 
     <main>
-      <input
-        type="text"
-        v-model="rentalToAdd.businessoperator"
-        placeholder="Business operator"
-      />
+      <label>
+        Business operator
+        <input
+          type="text"
+          v-model="rentalToAdd.businessoperator"
+          placeholder="Business operator"
+        />
+      </label>
 
-      <input type="text" v-model="rentalToAdd.street" placeholder="Street" />
+      <label>
+        Street
+        <input type="text" v-model="rentalToAdd.street" placeholder="Street" />
+      </label>
 
-      <input
-        type="text"
-        v-model="rentalToAdd.streetnumber"
-        placeholder="Street number"
-        class="street-number"
-      />
+      <label>
+        Street number
+        <input
+          type="text"
+          v-model="rentalToAdd.streetnumber"
+          placeholder="Street number"
+          class="street-number"
+        />
+      </label>
 
-      <input
-        type="text"
-        v-model="rentalToAdd.geo_local_area"
-        placeholder="Area"
-      />
+      <label>
+        Area
+        <input
+          type="text"
+          v-model="rentalToAdd.geo_local_area"
+          placeholder="Area"
+        />
+      </label>
 
-      <input
-        type="number"
-        class="lat"
-        v-model="rentalToAdd.lat"
-        placeholder="Latitude"
-      />
+      <label>
+        Latitude
+        <input
+          type="number"
+          class="lat"
+          v-model="rentalToAdd.lat"
+          placeholder="Latitude"
+        />
+      </label>
 
-      <input
-        type="number"
-        class="long"
-        v-model="rentalToAdd.long"
-        placeholder="Longitude"
-      />
+      <label>
+        Longitude
+        <input
+          type="number"
+          class="long"
+          v-model="rentalToAdd.long"
+          placeholder="Longitude"
+        />
+      </label>
 
-      <input
-        type="number"
-        v-model="rentalToAdd.totalunits"
-        placeholder="Units"
-        class="units"
-      />
+      <label>
+        Units
+        <input
+          type="number"
+          v-model="rentalToAdd.totalunits"
+          placeholder="Units"
+          class="units"
+        />
+      </label>
 
-      <input
-        type="number"
-        v-model="rentalToAdd.totaloutstanding"
-        placeholder="Outstanding"
-        class="outstanding"
-      />
+      <label>
+        Outstanding
+        <input
+          type="number"
+          v-model="rentalToAdd.totaloutstanding"
+          placeholder="Outstanding"
+          class="outstanding"
+        />
+      </label>
 
-      <input
-        type="text"
-        v-model="rentalToAdd.detailurl"
-        placeholder="Link about"
-      />
+      <label>
+        Link about
+        <input
+          type="text"
+          v-model="rentalToAdd.detailurl"
+          placeholder="Link about"
+        />
+      </label>
 
       <button class="btn action" @click="onAddRental">Save</button>
     </main>

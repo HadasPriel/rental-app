@@ -1,15 +1,18 @@
 .rental-add{
+    position: fixed;
+    z-index: 1;
+    top: 58px;
+    bottom: 0;
+    right: -350px;
 
     background-color: #fff;
     box-shadow: rgba(9, 30, 66, 0.15) 0px 8px 12px 0px;
-    position: fixed;
-    right: -350px;
-    top: 58px;
-    bottom: 0;
-    z-index: 1;
     width: 325px;
     padding: 12px 20px;
+    
     transition: 0.3s;
+
+    overflow: auto;
 
     &.open{
         right: 0;
@@ -36,8 +39,19 @@
 
     }
 
+    label{
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        margin-bottom: 16px;
+
+        font-family: blink-m, serif;
+    }
+
     input{
         padding: 7px 11px;
+
         border: 1px solid rgb(219, 219, 219);
         border-radius: 4px;
     }
@@ -45,6 +59,10 @@
     .btn{
         font-size: 16px;
         padding: 8px 16px;
+    }
+
+    @media (max-width: 800px){
+        font-size: 14px;
     }
  
 }
