@@ -1,0 +1,26 @@
+.app-header-container {
+    position: sticky;
+    background-color: #fff;
+    top: 0;
+    z-index: 2;
+    box-shadow: 1px 3px 5px -3px rgba(0, 0, 0, 0.123);
+    margin-block-end: 30px;
+
+}
+
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .logo{
+        font-family: figtree-m;
+        font-size: 24px;
+        padding:  15px 0;
+    }
+    
+    nav > * {
+        margin-inline-start: 10px;
+    }
+    
+}

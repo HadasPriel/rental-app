@@ -2,6 +2,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
+import './styles/index.scss';
 
 import OpenLayersMap from "vue3-openlayers"
 import "vue3-openlayers/styles.css"

@@ -1,0 +1,30 @@
+@function gtcMaimLayout($width){
+    @return minmax(20px, 1fr) minmax(auto, $width + 150) minmax(20px, 1fr);
+}
+
+.main-layout {
+    display: grid;
+    grid-template-columns: 20px 1fr 20px;
+
+    > * {
+        grid-column: 2;
+
+        &.full {
+            grid-column: 1 /-1;
+        }
+    }
+
+   
+    @media (min-width: 540px) {
+        grid-template-columns: gtcMaimLayout(540px);
+    }
+    
+    @media (min-width: 985px) {
+        grid-template-columns: gtcMaimLayout(985px);
+    }
+    
+    @media (min-width: 1300px) {
+        grid-template-columns: gtcMaimLayout(1300px);
+    }
+
+}

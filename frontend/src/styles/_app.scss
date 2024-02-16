@@ -1,0 +1,31 @@
+
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 500;
+  border-radius: 3px;
+  margin: 0.25rem;
+  
+  background-color: #007bff;
+  &:hover{
+    background-color: #0162ca;
+  }
+
+  &.danger {
+    background-color: #dc3545;
+    &:hover{
+      background-color: #b12b38;
+    }
+  }
+
+  &.action {
+    background-color: #218838;
+    &:hover{
+      background-color: #186328;
+    }
+  }
+}
+

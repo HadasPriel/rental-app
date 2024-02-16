@@ -1,0 +1,108 @@
+.rental-table {
+  border-collapse: collapse;
+  border: 0.5px solid $clr6;
+  width: 100%;
+  margin-block-end: 20px;
+
+  td,
+  th {
+    position: relative;
+    padding: 8px 12px;
+    border-bottom: 1px solid $clr3;
+    text-align: left;
+    min-height: 37px;
+
+  }
+  .no-padding{
+    padding: 0;
+  }
+  
+  th {
+    position: relative;
+    font-weight: 600;
+    padding-bottom: 12px;
+    border-bottom: 2px solid $clr3;
+  }
+
+  .btn{
+    font-size: 12px; 
+    padding: 3px 9px;
+  }
+
+  @media (max-width: 800px) {
+
+    font-size: 15px;
+
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+      display: block;
+      border-bottom-color: $clr4;
+    }
+
+    tr{
+      box-shadow: 0 2px 3px hsla(0,0%,4%,.1), 0 0 0 1px hsla(0,0%,4%,.1);
+      margin-bottom: 16px;
+    }
+
+    /* Hide table headers (but not display: none;, for accessibility) */
+    thead {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+
+    td {
+      /* Behave  like a "row" */
+      position: relative;
+      padding-left: 52%;
+    }
+
+    td:before {
+      /* Now like a table header */
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 45%;
+      background-size: 100%;
+      padding: 8px;
+      white-space: nowrap;
+      
+    }
+
+    /* Label the data  */
+
+    td:nth-of-type(1):before {
+      content: "Business Operator";
+    }
+    td:nth-of-type(2):before {
+      content: "Address";
+    }
+    td:nth-of-type(3):before {
+      content: "lat";
+    }
+    td:nth-of-type(5):before {
+      content: "long";
+    }
+    td:nth-of-type(6):before {
+      content: "Units";
+    }
+    td:nth-of-type(7):before {
+      content: "Standing";
+    }
+    td:nth-of-type(8):before {
+      content: "Links";
+    }
+    td:nth-of-type(9):before {
+      content: "Actions";
+    }
+
+    td:nth-of-type(4) {
+      display: none;
+    }
+  }
+}
