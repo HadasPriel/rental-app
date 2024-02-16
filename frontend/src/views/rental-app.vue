@@ -1,5 +1,13 @@
 <template>
   <section>
+    <rental-add
+      @addRental="addRental"
+      :isAddShow="isAddShow"
+      @toggleIsAddShow="toggleIsAddShow"
+    />
+    <button class="add-btn btn action" @click="toggleIsAddShow">
+      Add Rental
+    </button>
     <rental-table
       :rentals="rentals"
       @removeRental="removeRental"
@@ -13,15 +21,17 @@
 import { rentalService } from "../services/rental.service.js";
 
 import rentalTable from "@/cmps/table/rental-table.vue";
+import rentalAdd from "@/cmps/rental-add.vue";
 import mapCmp from "@/cmps/map/map-cmp.vue";
 
 export default {
-  components: { mapCmp, rentalTable },
+  components: { mapCmp, rentalTable, rentalAdd },
 
   data() {
     return {
       rentals: [],
       mapCenter: [-123.10664756, 49.28],
+      isAddShow: false,
     };
   },
 
@@ -52,6 +62,9 @@ export default {
     },
     centerRental(rentalCoor) {
       this.mapCenter = rentalCoor;
+    },
+    toggleIsAddShow() {
+      this.isAddShow = !this.isAddShow;
     },
   },
 };
