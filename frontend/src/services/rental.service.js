@@ -1,8 +1,14 @@
 
-import { storageService } from './async-storage.service.js'
+// import { storageService } from './async-storage.service.js'
+// const STORAGE_KEY = 'rental'
+
+import Axios from 'axios'
 
 
-const STORAGE_KEY = 'rental'
+var axios = Axios.create({
+	withCredentials: false
+})
+
 
 export const rentalService = {
 	query,
@@ -13,35 +19,58 @@ export const rentalService = {
 
 
 async function query() {
-	return await storageService.query(STORAGE_KEY)
+	try {
+		const res = await axios.get(`http://localhost:3030/api/rental`)
+		return res.data
+	} catch (err) {
+		console.log(`Had Issues GETing to the backend, query rentals`)
+		console.log(err)
+		throw err
+	}
 }
 
 
 async function remove(rentalId) {
-	return await storageService.remove(STORAGE_KEY, rentalId)
+	try {
+		const res = await axios.delete(`//localhost:3030/api/rental/${rentalId}`)
+		return res.data
+	} catch (err) {
+		console.log(`Had Issues DELETEing to the backend, remove rental`)
+		console.log(err)
+		throw err
+	}
 }
 
 async function add(rental) {
-	var { businessoperator, street, streetnumber, geo_local_area, lat, long, totalunits, totaloutstanding, detailurl } = rental
-	var rentalToAdd = {
-		datasetid: "rental-standards-current-issues",
-		recordid: _makeId(),
-		fields: {
-			totalunits,
-			businessoperator,
-			detailurl,
-			street,
-			geom: {
-				type: "Point",
-				coordinates: [lat, long]
+	try {
+
+		var { businessoperator, street, streetnumber, geo_local_area, lat, long, totalunits, totaloutstanding, detailurl } = rental
+		var rentalToAdd = {
+			datasetid: "rental-standards-current-issues",
+			recordid: _makeId(),
+			fields: {
+				totalunits,
+				businessoperator,
+				detailurl,
+				street,
+				geom: {
+					type: "Point",
+					coordinates: [lat, long]
+				},
+				streetnumber,
+				totaloutstanding,
+				geo_local_area
 			},
-			streetnumber,
-			totaloutstanding,
-			geo_local_area
-		},
-		record_timestamp: Date.now()
+			record_timestamp: Date.now()
+		}
+
+		const res = await axios.post(`//localhost:3030/api/rental`, rentalToAdd)
+		return res.data
+	} catch (err) {
+		console.log(`Had Issues POSTing to the backend, remove rental`)
+		console.log(err)
+		throw err
 	}
-	return await storageService.post(STORAGE_KEY, rentalToAdd)
 }
 
 
