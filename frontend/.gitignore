@@ -29,6 +29,6 @@ coverage
 
 *.tsbuildinfo
 
+*point-list-map.vue
 *map-cmp2.vue
 *map-cmp-ignore.vue
-
