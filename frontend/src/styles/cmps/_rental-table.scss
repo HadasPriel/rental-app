@@ -1,14 +1,17 @@
 .rental-table {
   border-collapse: collapse;
-  border: 0.5px solid $clr6;
   width: 100%;
   margin-block-end: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 13px hsla(0,0%,4%,.1);
+  padding: 20px;
+  border-radius: 8px;
 
   td,
   th {
     position: relative;
     padding: 8px 12px;
-    border-bottom: 1px solid $clr3;
+    // border-bottom: 1px solid $clr3;
     text-align: left;
     min-height: 37px;
 
@@ -30,7 +33,10 @@
     padding: 3px 9px;
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 990px) {
+
+    background-color: unset;
+    box-shadow:none;
 
     font-size: 15px;
 
@@ -43,8 +49,9 @@
       display: block;
       border-bottom-color: $clr4;
     }
-
+    
     tr{
+      background-color: #fff;
       box-shadow: 0 2px 3px hsla(0,0%,4%,.1), 0 0 0 1px hsla(0,0%,4%,.1);
       margin-bottom: 16px;
     }
@@ -60,6 +67,7 @@
       /* Behave  like a "row" */
       position: relative;
       padding-left: 52%;
+      border-bottom: 1px solid $clr3;
     }
 
     td:before {

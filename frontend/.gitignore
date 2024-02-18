@@ -28,3 +28,6 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+
+*map-cmp1.vue
+*map-cmp2.vue

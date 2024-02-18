@@ -1,6 +1,7 @@
 .app-header-container {
     position: sticky;
-    background-color: #fff;
+    background-color: $clrTag1dark;
+    color: #fff;
     top: 0;
     z-index: 2;
     box-shadow: 1px 3px 5px -3px rgba(0, 0, 0, 0.123);
@@ -21,6 +22,10 @@
     
     nav > * {
         margin-inline-start: 10px;
+    }
+
+    img{
+        height: 23px;
     }
     
 }

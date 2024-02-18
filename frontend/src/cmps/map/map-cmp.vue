@@ -1,63 +1,106 @@
-<template>
-  <section class="rental-map-container">
-    <ol-map
-      ref="mapRef"
-      :loadTilesWhileAnimating="true"
-      :loadTilesWhileInteracting="true"
-      style="height: 400px"
-    >
-      <ol-view
-        ref="view"
-        :center="mapCenter"
-        :rotation="rotation"
-        :zoom="zoom"
-        :projection="projection"
-      />
-      <ol-fullscreen-control />
-
-      <ol-tile-layer>
-        <ol-source-osm />
-      </ol-tile-layer>
-
-      <point-list :rentals="rentals" />
-
-      <ol-vector-layer>
-        <ol-source-vector> </ol-source-vector>
-      </ol-vector-layer>
-    </ol-map>
-  </section>
+<template  >
+  <div ref="mapRef" style="width: 100%; height: 300px"></div>
 </template>
 
-<script setup >
-import pointList from "./point-list.vue";
-import DragRotate from "ol/interaction/DragRotate.js";
-import { ref, onMounted } from "vue";
+<script >
+import OSM from "ol/source/OSM";
+import TileLayer from "ol/layer/Tile";
+import { Map, View } from "ol";
+import { fromLonLat } from "ol/proj";
+import "ol/ol.css";
+
+import Feature from "ol/Feature";
+import Point from "ol/geom/Point";
+import VectorLayer from "ol/layer/Vector";
+import { Vector as VectorSource } from "ol/source";
+
+import { FullScreen, defaults as defaultControls } from "ol/control.js";
+
 import { defaults as defaultInteractions } from "ol/interaction.js";
 
-const props = defineProps({
-  rentals: Object,
-  mapCenter: Object,
-});
+export default {
+  props: ["rentals", "mapCenter"],
 
-const projection = ref("EPSG:4326");
-const zoom = ref(14);
-const rotation = ref(0);
-const mapRef = ref(null);
+  data() {
+    return {
+      map: new Map({
+        target: this.$refs.mapRef,
+        controls: defaultControls().extend([new FullScreen()]),
+        interactions: this.setInteractions(),
+        layers: [
+          new TileLayer({
+            source: new OSM(),
+          }),
+          this.setRentalPoints(),
+        ],
 
-onMounted(() => {
-  console.log("DragRotate:", DragRotate);
-  DragRotate.Interaction_default = null;
-  mapRef.value.map.interactions = defaultInteractions({
-    dragAndDrop: false,
-    doubleClickZoom: true,
-    dragPan: false,
-    keyboardPan: false,
-    keyboardZoom: false,
-    mouseWheelZoom: true,
-    pointer: false,
-    select: false,
-  });
-});
+        view: new View({
+          center: fromLonLat(this.mapCenter),
+          zoom: 13,
+        }),
+      }),
+    };
+  },
+
+  mounted() {
+    this.map?.setTarget(this.$refs.mapRef);
+  },
+
+  methods: {
+    setRentalPoints() {
+      const pointSource = new VectorSource();
+
+      const features = this.rentals.map((rental) => {
+        var [lat, long] = rental.fields.geom.coordinates;
+        const coords = fromLonLat([parseFloat(lat), parseFloat(long)]);
+        return new Feature({
+          mass: 0,
+          year: 0,
+          geometry: new Point(coords),
+        });
+      });
+
+      pointSource.addFeatures(features);
+      const rentalPoints = new VectorLayer({
+        source: pointSource,
+      });
+
+      return rentalPoints;
+    },
+
+    setInteractions() {
+      return defaultInteractions({
+        doubleClickZoom: true,
+        dragAndDrop: false,
+        dragPan: false,
+        keyboardPan: false,
+        keyboardZoom: true,
+        mouseWheelZoom: false,
+        pointer: false,
+        select: false,
+      });
+    },
+  },
+
+  watch: {
+    mapCenter: function () {
+      this.map.setView(
+        new View({
+          center: fromLonLat(this.mapCenter),
+          zoom: 13,
+        })
+      );
+    },
+
+    rentals: function () {
+      this.map.setLayers([
+        new TileLayer({
+          source: new OSM(),
+        }),
+        this.setRentalPoints(),
+      ]);
+    },
+  },
+};
 </script>
-
 

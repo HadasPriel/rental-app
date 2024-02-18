@@ -9,23 +9,33 @@
   border-radius: 3px;
   margin: 0.25rem;
   
-  background-color: #007bff;
+  background-color: $clrTag1;
   &:hover{
-    background-color: #0162ca;
+    background-color: $clrTag1dark;
   }
 
   &.danger {
-    background-color: #dc3545;
+    background-color: $clrTag2;
     &:hover{
-      background-color: #b12b38;
+      background-color: $clrTag2dark;
     }
   }
 
   &.action {
-    background-color: #218838;
-    &:hover{
-      background-color: #186328;
-    }
+    background-color: $clrTag1;
+  &:hover{
+    background-color: $clrTag1dark;
+  }
+  }
+}
+
+.rentals-title-container{
+  margin-block-end: 20px;
+  .rentals-title{
+    margin-inline-end: 25px;
+  }
+  .add-btn{
+    margin: 0;
   }
 }
 

@@ -54,19 +54,18 @@ onMounted(() => {
   map?.value.setTarget(mapRef.value);
 });
 
-// watch(
-//   () => props.mapCenter,
-//   (first, second) => {
-//     console.log("hi! mapCenter changed");
-//     map.value.render();
-//     map.setView(
-//       new View({
-//         center: transform(props.mapCenter, "EPSG:3857", "EPSG:4326"),
-//         zoom: 5,
-//       })
-//     );
-//   }
-// );
+watch(
+  () => props.mapCenter,
+  () => {
+    console.log("hi! mapCenter changed");
+    map.setView(
+      new View({
+        center: fromLonLat(props.mapCenter),
+        zoom: 13,
+      })
+    );
+  }
+);
 
 function setRentalPoints() {
   const pointSource = new VectorSource();

@@ -5,9 +5,12 @@
       :isAddShow="isAddShow"
       @toggleIsAddShow="toggleIsAddShow"
     />
-    <button class="add-btn btn action" @click="toggleIsAddShow">
-      Add Rental
-    </button>
+    <div class="rentals-title-container flex align-center">
+      <h2 class="rentals-title">Rentals</h2>
+      <button class="add-btn btn action" @click="toggleIsAddShow">
+        Add Rental
+      </button>
+    </div>
     <rental-table
       :rentals="rentals"
       @removeRental="removeRental"
