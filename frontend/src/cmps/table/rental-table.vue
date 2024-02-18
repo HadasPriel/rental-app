@@ -26,7 +26,6 @@ export default {
     removeRental(rentalId) {
       this.$emit("removeRental", rentalId);
     },
-
     centerRental(rentalCoor) {
       this.$emit("centerRental", rentalCoor);
     },

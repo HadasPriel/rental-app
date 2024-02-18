@@ -52,6 +52,7 @@ export default {
         console.log("err:", err);
       }
     },
+
     async addRental(rentalToAdd) {
       try {
         var rental = await rentalService.add(rentalToAdd);
@@ -63,9 +64,11 @@ export default {
         console.log("err:", err);
       }
     },
+
     centerRental(rentalCoor) {
       this.mapCenter = rentalCoor;
     },
+
     toggleIsAddShow() {
       this.isAddShow = !this.isAddShow;
     },

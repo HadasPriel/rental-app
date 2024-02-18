@@ -1,5 +1,8 @@
 <template  >
-  <div ref="mapRef" style="width: 100%; height: 300px"></div>
+  <div
+    ref="mapRef"
+    style="width: 100%; height: 400px; margin-bottom: 30px"
+  ></div>
 </template>
 
 <script >

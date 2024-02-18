@@ -5,9 +5,6 @@
 <script>
 export default {
   props: ["tHead"],
-  data() {
-    return {};
-  },
 };
 </script>
 

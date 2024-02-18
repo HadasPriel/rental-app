@@ -4,7 +4,7 @@ import cors from 'cors'
 import { rentalService } from './services/rental.service.js'
 
 const app = express()
-app.use(express.static('public'))
+// app.use(express.static('public'))
 app.use(express.json())
 
 const corsOptions = {
