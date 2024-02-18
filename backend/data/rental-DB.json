@@ -187,26 +187,5 @@
       "geo_local_area": "Mount Pleasant"
     },
     "record_timestamp": "2021-03-16T10:31:57.804Z"
-  },
-  {
-    "datasetid": "rental-standards-current-issues",
-    "recordid": "1e132550dee5aac0ad7d3ff8e8e92d5f57d99c28",
-    "fields": {
-      "totalunits": 30,
-      "businessoperator": "City of Vancouver",
-      "detailurl": "http://app.vancouver.ca/RPS_Net/Default.aspx?num=58&street=ALEXANDER%20STREET",
-      "street": "ALEXANDER STREET",
-      "geom": {
-        "type": "Point",
-        "coordinates": [
-          -123.1027163,
-          49.28344261
-        ]
-      },
-      "streetnumber": "58",
-      "totaloutstanding": 1,
-      "geo_local_area": "Downtown"
-    },
-    "record_timestamp": "2021-03-16T10:31:57.804Z"
   }
 ]

@@ -1,13 +1,15 @@
-
-// import { storageService } from './async-storage.service.js'
-// const STORAGE_KEY = 'rental'
-
 import Axios from 'axios'
 
 
 var axios = Axios.create({
 	withCredentials: false
 })
+
+const BASE_URL = process.env.NODE_ENV === 'production'
+    ? '/api/'
+    : '//localhost:3030/api/'
+
+
 
 
 export const rentalService = {
@@ -20,7 +22,7 @@ export const rentalService = {
 
 async function query() {
 	try {
-		const res = await axios.get(`http://localhost:3030/api/rental`)
+		const res = await axios.get(`${BASE_URL}rental`)
 		return res.data
 	} catch (err) {
 		console.log(`Had Issues GETing to the backend, query rentals`)
@@ -32,7 +34,7 @@ async function query() {
 
 async function remove(rentalId) {
 	try {
-		const res = await axios.delete(`//localhost:3030/api/rental/${rentalId}`)
+		const res = await axios.delete(`${BASE_URL}rental/${rentalId}`)
 		return res.data
 	} catch (err) {
 		console.log(`Had Issues DELETEing to the backend, remove rental`)
@@ -64,7 +66,7 @@ async function add(rental) {
 			record_timestamp: Date.now()
 		}
 
-		const res = await axios.post(`//localhost:3030/api/rental`, rentalToAdd)
+		const res = await axios.post(`${BASE_URL}rental`, rentalToAdd)
 		return res.data
 	} catch (err) {
 		console.log(`Had Issues POSTing to the backend, remove rental`)

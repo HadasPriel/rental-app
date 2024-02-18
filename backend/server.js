@@ -4,14 +4,18 @@ import cors from 'cors'
 import { rentalService } from './services/rental.service.js'
 
 const app = express()
-// app.use(express.static('public'))
+app.use(express.static('public'))
 app.use(express.json())
 
-const corsOptions = {
-    origin: ['http://127.0.0.1:5173', 'http://localhost:5173'],
-    credentials: true
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.resolve(__dirname, 'public')))
+} else {
+    const corsOptions = {
+        origin: ['http://127.0.0.1:5173', 'http://localhost:5173'],
+        credentials: true
+    }
+    app.use(cors(corsOptions))
 }
-app.use(cors(corsOptions))
 
 
 
@@ -50,7 +54,7 @@ app.delete('/api/rental/:rentalId', async (req, res) => {
 
 
 
-const port = 3030
+const port = process.env.PORT || 3030
 app.listen(port, () =>
     console.log(`Server listening on port http://127.0.0.1:${port}/`)
 )
