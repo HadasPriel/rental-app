@@ -1,11 +1,17 @@
 import express from 'express'
 import cors from 'cors'
+import path from 'path'
 
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 import { rentalService } from './services/rental.service.js'
 
 const app = express()
 app.use(express.static('public'))
 app.use(express.json())
+
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.resolve(__dirname, 'public')))
@@ -52,7 +58,9 @@ app.delete('/api/rental/:rentalId', async (req, res) => {
 })
 
 
-
+app.get('/**', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
 
 const port = process.env.PORT || 3030
 app.listen(port, () =>
