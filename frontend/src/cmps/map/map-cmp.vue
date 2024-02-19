@@ -26,6 +26,7 @@ export default {
 
   data() {
     return {
+      rentalPointsLayer: null,
       map: new Map({
         target: this.$refs.mapRef,
         controls: defaultControls().extend([new FullScreen()]),
@@ -34,7 +35,7 @@ export default {
           new TileLayer({
             source: new OSM(),
           }),
-          this.setRentalPoints(),
+          // this.setRentalPoints(),
         ],
 
         view: new View({
@@ -68,6 +69,8 @@ export default {
         source: pointSource,
       });
 
+      this.rentalPointsLayer = rentalPoints;
+
       return rentalPoints;
     },
 
@@ -96,12 +99,16 @@ export default {
     },
 
     rentals: function () {
-      this.map.setLayers([
-        new TileLayer({
-          source: new OSM(),
-        }),
-        this.setRentalPoints(),
-      ]);
+      console.log("run");
+      this.map.removeLayer(this.rentalPointsLayer);
+      var newnew = this.setRentalPoints();
+      this.map.addLayer(newnew);
+      // this.map.setLayers([
+      //   new TileLayer({
+      //     source: new OSM(),
+      //   }),
+      //   this.setRentalPoints(),
+      // ]);
     },
   },
 };
