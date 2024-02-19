@@ -35,7 +35,6 @@ export default {
           new TileLayer({
             source: new OSM(),
           }),
-          // this.setRentalPoints(),
         ],
 
         view: new View({
@@ -99,7 +98,6 @@ export default {
     },
 
     rentals: function () {
-      console.log("run");
       this.map.removeLayer(this.rentalPointsLayer);
       var newnew = this.setRentalPoints();
       this.map.addLayer(newnew);
