@@ -103,12 +103,6 @@ export default {
       this.map.removeLayer(this.rentalPointsLayer);
       var newnew = this.setRentalPoints();
       this.map.addLayer(newnew);
-      // this.map.setLayers([
-      //   new TileLayer({
-      //     source: new OSM(),
-      //   }),
-      //   this.setRentalPoints(),
-      // ]);
     },
   },
 };
